@@ -3,6 +3,8 @@
 var SwaggerExpress = require('swagger-express-mw');
 var express = require('express');
 var app = express();
+var resolve = require('./src/common/resolve');
+
 module.exports = app; // for testing
 
 app.use(function(req, res, next) {
@@ -16,6 +18,15 @@ app.use(express.static(__dirname + '/api/swagger'));
 /*app.get('/swagger', function (req, res) {
   res.send('Hello World!');
 });*/
+var parsedSwagger;
+resolve.resolveYaml()
+.then(function (result){
+	parsedSwagger = result;
+});
+
+app.get('/parsedSwagger', function (req, res) {
+  res.send(parsedSwagger);
+});
 
 var config = {
   appRoot: __dirname // required config
