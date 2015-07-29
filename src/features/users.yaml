@@ -1,5 +1,5 @@
 # binds a127 app logic to a route
-x-swagger-router-controller: hello_world2
+x-swagger-router-controller: user.controller
 get:
   description: Returns 'Hello' to the caller
   # used as the method name of the controller
