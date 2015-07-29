@@ -1,16 +1,19 @@
 {
-  "name": "hello-world",
-  "version": "0.0.1",
+  "name": "SwaggerExpressAdvancedExample",
+  "version": "1.0.0",
   "private": true,
   "description": "New Swagger API Project",
   "keywords": [],
-  "author": "",
-  "license": "",
+  "author": "Gilad Shoham",
+  "license": "MIT",
   "main": "app.js",
   "dependencies": {
     "express": "^4.12.3",
     "json-refs": "^1.0.2",
-    "swagger-express-mw": "0.0.x"
+    "path": "^0.11.14",
+    "swagger-express-mw": "0.0.x",
+    "underscore": "^1.8.3",
+    "yaml-js": "^0.1.1"
   },
   "devDependencies": {
     "should": "^5.2.0",
