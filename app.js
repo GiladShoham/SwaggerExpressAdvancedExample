@@ -2,6 +2,8 @@
 
 var SwaggerExpress = require('swagger-express-mw');
 var express = require('express');
+var path = require('path');
+var _ = require('underscore');
 var app = express();
 var resolve = require('./src/common/resolve');
 
@@ -28,8 +30,16 @@ app.get('/parsedSwagger', function (req, res) {
   res.send(parsedSwagger);
 });
 
+var controllersDirs = [
+	"api/controllers",
+	"src/features"
+]
+
+controllersDirs = _.map(controllersDirs, resolveAppPath);
+
 var config = {
-  appRoot: __dirname // required config
+  appRoot: __dirname, // required config
+  controllersDirs : controllersDirs
 };
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
@@ -43,3 +53,7 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
 
   console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
 });
+
+function resolveAppPath(to) {
+    return path.resolve(__dirname, to);
+  };
