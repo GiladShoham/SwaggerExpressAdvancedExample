@@ -1,13 +1,13 @@
 var resolve = require('json-refs').resolveRefs;
-var YAML = require('yaml-js');
+var YAML = require('js-yaml');
 var fs = require('fs');
 
 function resolveYaml(){
   var mainYamlPath = './api/swagger/main-swagger.yaml';
-  var root = YAML.load(fs.readFileSync(mainYamlPath).toString());
+  var root = YAML.safeLoad(fs.readFileSync(mainYamlPath).toString());
   var options = {
     processContent: function (content) {
-      return YAML.load(content);
+      return YAML.safeLoad(content);
     }
   };
   return resolve(root, options).then(function (results) {
